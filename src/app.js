@@ -7,6 +7,7 @@ const app = express();
 
 app.set('pkg', pkg)
 
+//este comentario viene desde gitHub
 //morgan sirve para
 app.use(morgan('dev'));
 
