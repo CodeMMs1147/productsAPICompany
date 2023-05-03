@@ -5,20 +5,20 @@ import products from './routes/products.routes';
 
 const app = express();
 
-app.set('pkg', pkg)
+app.set('pkg', pkg);
 
-//morgan sirve para
+// morgan sirve para
 app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
-    res.json({
-        name: app.get('pkg').name,
-        author: app.get('pkg').author,
-        description: app.get('pkg').description,
-        version: app.get('pkg').version
-    })
-})
+  res.json({
+    name: app.get('pkg').name,
+    author: app.get('pkg').author,
+    description: app.get('pkg').description,
+    version: app.get('pkg').version,
+  });
+});
 
-app.use('/products',products);
+app.use('/products', products);
 
 export default app;
