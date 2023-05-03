@@ -11,6 +11,10 @@ app.set('pkg', pkg);
 // morgan sirve para
 app.use(morgan('dev'));
 
+// eslint-disable-next-line max-len
+// siempre que se vayan a envíar objetos json en algun momento al servidor se le debe decir a express que los reconozca así:
+app.use(express.json());
+
 app.get('/', (req, res) => {
   res.json({
     name: app.get('pkg').name,

@@ -6,4 +6,5 @@
         "source.organizeImports"
     ],
     "files.eol": "\n"
+    // "files.eol": "\r\n" para CRLF
 }
