@@ -28,7 +28,7 @@ export const signUp = async (req, res) => {
   const savedUser = await newUser.save();
   console.log(newUser);
 
-  const token = jwt.sign({id: savedUser._id}, config.SECRET, {
+  const token = jwt.sign({ id: savedUser._id }, config.SECRET, {
     expiresIn: 86400, // 24 hrs
   });
 
@@ -36,22 +36,21 @@ export const signUp = async (req, res) => {
 };
 
 export const signIn = async (req, res) => {
-
   const userFound = await User.findOne({ email: req.body.email }).populate('roles');
 
   if (!userFound) {
-    return res.status(400).json({message: 'User not found'});
+    return res.status(400).json({ message: 'User not found' });
   }
 
   const validatePassword = await User.comparePassword(req.body.password, userFound.password);
 
-  if (!validatePassword) return res.status(401).json({ token: null, message: 'invalid password' });
+  if (!validatePassword) return res.status(401).json({ token: null, message: `invalid ${userFound.password} match ${req.body.password}` });
 
-  const token = jwt.sign({id: userFound._id}, config.SECRET, {
+  const token = jwt.sign({ id: userFound._id }, config.SECRET, {
     expiresIn: 86400,
   });
 
   console.log(userFound);
 
-  res.json({token});
+  res.json({ token });
 };
